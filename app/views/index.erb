@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-
-    <% @articles.each do |article| %>
+<ul>
+<% @articles.each do |article| %>
+  <li>
+    <a href="/articles/<%= article.id %>">
       <%= article.title %>
-      <%= article.content %>
-    <% end %>
-
-  </body>
-</html>
+    </a>
+  </li>
+<% end %>
+</ul>
