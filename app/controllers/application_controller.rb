@@ -12,13 +12,13 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/articles' do
-    @articles = Articles.all
+    @articles = Article.all
     erb :index
   end
 
   post '/articles' do
     Article.create(title: params[:title], content: params[:content])
-    @articles = Articles.all
+    @articles = Article.all
     erb :index
   end
 
@@ -33,8 +33,7 @@ class ApplicationController < Sinatra::Base
 
   get 'alticles/:id/edit' do
     @article = Article.find(params[:id])
-    @article.update(title: params[:title], content: params[:content])
-    erb :show
+    erb :edit
   end
 
   patch '/articles/:id' do
