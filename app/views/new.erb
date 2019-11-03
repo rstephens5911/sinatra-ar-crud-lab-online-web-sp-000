@@ -1,13 +1,19 @@
-<h1>New Article Form</h1>
-
-<form  action="/articles" method="POST">
-  <div>
-  <label for="name">Article Name:</label>
-  <input type="text" name="title" id="title">
-</div>
-<div>
-  <label for="content">Article Content:</label>
-  <input type="text" name="content" id="content">
-</div>
-<input name="submit" type="submit" id="submit">
-</form>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Create Articles</h1>
+    <form class="article" action="/posts" method="post">
+      <label for="title">Post Title: </label>
+      <input id="title" type="text" name="title" id="title">
+      <br>
+      <label for="content">Content</label>
+      <br>
+      <textarea id="content" name="content" rows="20" cols="80"></textarea>
+      <input id="submit" type="submit" name="submit" value="Submit">
+    </form>
+  </body>
+</html>

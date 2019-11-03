@@ -7,14 +7,8 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
-  get '/articles/new' do
-    erb :new
-  end
-
-  post '/articles' do
-    article = Article.new({title: params[:title], content: params[:content]})
-    article.save
-    redirect to '/articles'
+  get '/' do
+    redirect '/articles'
   end
 
   get '/articles' do
@@ -22,28 +16,36 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-    get 'alticles/:id/edit' do
-      @article = Article.find(params[:id].to_i)
-      erb :edit
-    end
+  post '/articles' do
+    Article.create(title: params[:title], content: params[:content])
+    @articles = Articles.all
+    erb :index
+  end
 
-  patch '/articles/:id' do
-    article = Article.find(params[:id].to_i)
-    article.update(title: params[:title])
-    article.update(content: params[:content])
-    article.save
-    redirect to '/articles/'+ article.id.to_s
+  get '/articles/new' do
+    erb :new
   end
 
   get '/articles/:id' do
-    @article = Article.find(params[:id].to_i)
+    @article = Article.find(params[:id])
+    erb :show
+  end
+
+  get 'alticles/:id/edit' do
+    @article = Article.find(params[:id])
+    @article.update(title: params[:title], content: params[:content])
+    erb :show
+  end
+
+  patch '/articles/:id' do
+    @article = Article.find(params[:id])
+    @article.update(title: params[:title], content: params[:content])
     erb :show
   end
 
   delete '/articles/:id/delete' do
-    article = Article.find(params[:id].to_i)
-    @name = article.name
-    article.destroy
+    @article = Article.find(params[:id])
+    @article.delete
     erb :delete
   end
 

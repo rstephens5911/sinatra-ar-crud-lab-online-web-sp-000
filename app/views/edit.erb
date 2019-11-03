@@ -1,13 +1,24 @@
-<form action="/articles/<%= @article.id %>" method="POST">
-  <div>
-    <label for="name">Article Name:</label>
-    <h2>Content:</h2>
-    <input type="text" name="title" id="title" value=<%= @article.title %>>
-  </div>
-  <div>
-    <label for="content">Article Content:</label>
-    <input type="text" name="content" value=<%= @article.content %>>
-  </div>
-    <input name="submit" type="submit" id="submit">
-    <input id="hidden" type="hidden" name="_method" value="patch">
-  </form>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+<h1>Edit <%= article.title %></h1>
+<form class="post" action="/articles/<%= @article.id %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <label for="title">Title:</label>
+  <input id="title" type="text" name="title" value="<%= @article.title %>">
+  <label for="content">COntent:</label>
+  <textarea id="content" name="content" rows="10" cols="20" value="<%= @article.content %>"></textarea>
+  <input id="submit" type="submit" name="submit" value="Submit">
+</form>
+
+<form class="delete" action="/articles/<%=@articles.id %>/delete" method="POST">
+  <input id="hidden_delete" type="hidden" name="_method" value="delete">
+  <input id="delete" type="submit" name="delete" value="Delete">
+</form>
+</body>
+</html>
