@@ -1,31 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
 
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>New Article</title>
-  <style>
-    input {
-      margin: 5px
-    }
-  </style>
-</head>
+    <form method="POST" action="/articles">
+      <input type="text" name="title">
+      <input type="text" name="content">
+      <input type="submit" value="submit">
+    </form>
 
-<body>
-  <h1>Create A New Blog</h1>
-  <form action="<%= @article.new_record? ? "/articles" : "/articles/#{@article.id}" %>" method="post">
-    <!-- Persisted is the opposite of new_record? -->
-    <% if @article.persisted? %>
-      <input id="hidden" type="hidden" name="_method" value="patch">
-    <% end %>
-    <label for="article_title">Article Name: </label>
-    <input type="text" name="article[title]" id="title" value="<%= @article.title %>" /><br>
-
-    <label for="article_content">Article Content: </label>
-    <input type="text" name="article[content]" id="content" value="<%= @article.content %>" /><br>
-
-    <br>
-    <input type="submit" id="submit" value="submit"/>
-  </form>
-</body>
+  </body>
 </html>
